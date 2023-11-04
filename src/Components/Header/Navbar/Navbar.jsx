@@ -1,7 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => console.log("Sign-out successful"))
+      .catch((error) => console.log(error));
+  };
+
   const navMenu = (
     <>
       <li>
@@ -44,13 +54,81 @@ const Navbar = () => {
           <span className="flex items-center">
             <Logo></Logo>
           </span>
-          <div className="flex lg:order-2">
-            <button
-              type="button"
-              className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-            >
-              Login
-            </button>
+          <div className="flex items-center lg:order-2">
+            {user && (
+              <div className="dropdown dropdown-end mr-4 ">
+                <div className="flex  md:border  md:rounded-lg  md:bg-base-100 p-2 justify-center items-center gap-3">
+                  <div className="hidden md:grid md:text-end">
+                    <p className="text-lg font-semibold">
+                      {user?.displayName ? user.displayName : "Anonymous User"}
+                    </p>
+                    <p className="text-sm text-amber-500 ">{user.email}</p>
+                  </div>
+                  <div>
+                    <label
+                      tabIndex={0}
+                      className="btn btn-circle md:btn-square  avatar online "
+                    >
+                      <div className=" w-12 rounded-full md:rounded-md">
+                        {user?.photoURL ? (
+                          <img src={user?.photoURL} />
+                        ) : (
+                          <img
+                            src="https://i.ibb.co/cQkSBMR/User-avatar-svg.png"
+                            alt=""
+                          />
+                        )}
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-5 z-[1] p-2 shadow bg-gray-300 rounded-box w-56"
+                >
+                  <div className=" md:hidden text-center mb-3">
+                    <p className="text-lg font-semibold">
+                      {user?.displayName ? user.displayName : "Anonymous User"}
+                    </p>
+                    <p className="text-sm text-red-500 ">{user.email}</p>
+                  </div>
+                  <div className="w-full px-2 space-y-2  ">
+                    <span className="btn text-center flex items-center ">
+                      Item1
+                    </span>
+                    <span className="btn text-center flex items-center">
+                      Item1
+                    </span>
+                    <span className="btn text-center flex items-center">
+                      Item1
+                    </span>
+                  </div>
+                </ul>
+              </div>
+            )}
+
+            <div>
+              {user ? (
+                <>
+                  <a
+                    onClick={handleLogOut}
+                    className="hidden lg:text-white lg:btn capitalize bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  >
+                    Sign Out
+                  </a>
+                </>
+              ) : (
+                <Link to={"/login"}>
+                  <button
+                    type="button"
+                    className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  >
+                    Sign In
+                  </button>
+                </Link>
+              )}
+            </div>
+
             <div
               className="dropdown dropdown-bottom dropdown-end inline-flex items-center p-2 w-10 h-10 justify-center text-sm  rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               data-collapse-toggle="navbar-sticky"
@@ -77,9 +155,30 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content mt-3 z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                className="dropdown-content mt-9 z-[1] menu p-4 space-y-1 shadow bg-red-100 rounded-box w-52"
               >
                 {navMenu}
+                <div>
+                  {user ? (
+                    <>
+                      <a
+                        onClick={handleLogOut}
+                        className=" text-white btn w-full capitalize bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                      >
+                        Sign Out
+                      </a>
+                    </>
+                  ) : (
+                    <Link to={"/login"}>
+                      <button
+                        type="button"
+                        className="hidden text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                      >
+                        Sign In
+                      </button>
+                    </Link>
+                  )}
+                </div>
               </ul>
             </div>
           </div>
