@@ -1,175 +1,223 @@
-import {useContext, useState } from "react";
-
+import { useContext, useState } from "react";
 
 import Swal from "sweetalert2";
-
 
 import { AuthContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const { signUpWithEmail } = useContext(AuthContext);
+  const [regError, setRegError] = useState("");
 
-    const { signUpWithEmail } = useContext(AuthContext);
-    const [regError, setRegError] = useState("");
-  
-    const handleRegister = (e) => {
-      e.preventDefault();
-      const form = new FormData(e.currentTarget);
-      const name = form.get("name");
-      const email = form.get("email");
-      const photo = form.get("photo");
-      const password = form.get("password");
-      console.log(name, photo, email, password);
-  
-      if (password.length < 6) {
-        setRegError("Password must be six characters or longer!");
-        return;
-      } else if (!/[A-Z]/.test(password)) {
-        setRegError("Password must contain at least one capital letter!");
-        return;
-      } else if (!/[!@#$%^&*]/.test(password)) {
-        setRegError("Password must contain at least one special character!");
-        return;
-      }
-  
-      setRegError("");
-      // create user
-      signUpWithEmail(email, password)
-        .then((result) => {
-          console.log(result.user);
-  
-          updateProfile(result.user, {
-            displayName: name,
-            photoURL: photo,
-          })
-            .then(() => console.log("Updated name and photo"))
-            .catch((error) => {
-              console.error(error);
-            });
-  
-          e.target.reset();
-          Swal.fire({
-            position: "top-bottom",
-            icon: "success",
-            title: "You Successfully Register",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    const email = form.get("email");
+    const photo = form.get("photo");
+    const password = form.get("password");
+    console.log(name, photo, email, password);
+
+    if (password.length < 6) {
+      setRegError("Password must be six characters or longer!");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setRegError("Password must contain at least one capital letter!");
+      return;
+    } else if (!/[!@#$%^&*]/.test(password)) {
+      setRegError("Password must contain at least one special character!");
+      return;
+    }
+
+    setRegError("");
+    // create user
+    signUpWithEmail(email, password)
+      .then((result) => {
+        console.log(result.user);
+
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
         })
-        .catch((error) => {
-          console.error(error);
-          setRegError(error.message);
+          .then(() => console.log("Updated name and photo"))
+          .catch((error) => {
+            console.error(error);
+          });
+
+        e.target.reset();
+        Swal.fire({
+          position: "top-bottom",
+          icon: "success",
+          title: "You Successfully Register",
+          showConfirmButton: false,
+          timer: 1500,
         });
-    };
-  
+      })
+      .catch((error) => {
+        console.error(error);
+        setRegError(error.message);
+      });
+  };
 
   return (
     <div>
-      <section className="bg-base-100 ">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Create and account
-              </h1>
-              <form onSubmit={handleRegister} className="space-y-4 md:space-y-6" >
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Your Name
-                  </label>
-                  <input
-                    type="name"
-                    name="name"
-                    id="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter Your Name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Your Photo URL
-                  </label>
-                  <input
-                    type="photo"
-                    name="photo"
-                    id="photo"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="http://photourl.png"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Your email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@company.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-
-                {regError && (
-                    <p className="text-red-600 font-semibold">{regError}</p>
-                  )}
-                
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="terms"
-                      aria-describedby="terms"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required=""
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label className="font-light text-gray-500 dark:text-gray-300">
-                      I accept the{" "}
-                      <a
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                        href="#"
-                      >
-                        Terms and Conditions
-                      </a>
-                    </label>
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                >
-                  Create an account
-                </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Already have an account?{" "}
-                  <Link to={'/login'}><span
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Sign In here
-                  </span></Link>
+      <section className=" bg-base-100 py-16 mt-20">
+        <div className="max-w-6xl px-4 md:px-1 mx-auto">
+          <div className="grid grid-cols-1 md:items-stretch md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10">
+            <div className="flex flex-col justify-between lg:py-5">
+              <div>
+                <h2 className="text-3xl font-bold leading-tight  sm:text-4xl lg:leading-tight lg:text-5xl">
+                  It’s time to join{" "}
+                  <span className="text-amber-500">Foodie Feast!</span>
+                </h2>
+                <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed ">
+                  Ready to embark on a mouthwatering adventure? Sign up for
+                  Foodie Feast and become part of a vibrant food community.{" "}
                 </p>
-              </form>
+              </div>
+
+              <div className="hidden md:mt-auto md:block">
+                <img
+                  className="rounded-md"
+                  src="https://i.ibb.co/hXh2bJL/Food-Feast.png"
+                  alt=""
+                />
+
+                <blockquote className="mt-20">
+                  <p className="text-lg leading-relaxed ">
+                    Discover extraordinary recipes, share your culinary
+                    creations, and connect with fellow food lovers. Your
+                    gastronomic journey starts here
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+
+            <div className="lg:pl-12">
+              <div className="overflow-hidden bg-base-200 rounded-md">
+                <div className="p-6 sm:p-10">
+                  <h3 className="text-3xl font-semibold text-black">
+                    Sign Up in{" "}
+                    <span className="text-amber-500">Foddie Feast!</span>
+                  </h3>
+                  <p className="mt-2 text-base text-gray-600">
+                    Already have an account?{" "}
+                    <Link to={"/login"}>
+                      <span className="font-medium text-amber-500 transition-all duration-200 hover:text-amber-700 hover:underline focus:text-amber-700">
+                        Sign In
+                      </span>
+                    </Link>
+                  </p>
+                  <form onSubmit={handleRegister} className="mt-4">
+                    <div className="space-y-6">
+                      <div>
+                        <label className="text-base font-medium text-gray-900">
+                          {" "}
+                          Your name{" "}
+                        </label>
+                        <div className="mt-2.5 relative">
+                          <input
+                            type="text"
+                            name="name"
+                            required
+                            placeholder="Enter your full name"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 caret-amber-500"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-base font-medium text-gray-900">
+                          {" "}
+                          Your PhotoURL{" "}
+                        </label>
+                        <div className="mt-2.5 relative">
+                          <input
+                            type="text"
+                            name="photo"
+                            required
+                            placeholder="Enter your photoURL"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 caret-amber-500"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-base font-medium text-gray-900">
+                          {" "}
+                          Email address{" "}
+                        </label>
+                        <div className="mt-2.5 relative">
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="Enter your full name"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 caret-amber-500"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-base font-medium text-gray-900">
+                          {" "}
+                          Password{" "}
+                        </label>
+                        <div className="mt-2.5 relative">
+                          <input
+                            type="password"
+                            name="password"
+                            required
+                            placeholder="Enter your full name"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 caret-amber-500"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        {regError && (
+                          <p className="text-red-600 font-semibold">
+                            ⚠️{regError}
+                          </p>
+                        )}
+                      </div>
+                      <div>
+                        <button
+                          type="submit"
+                          className="inline-flex items-center text-white justify-center w-full px-4 py-4 text-base font-semibold  transition-all duration-200 bg-amber-500 border border-transparent rounded-md focus:outline-none hover:bg-amber-600 focus:bg-amber-600"
+                        >
+                          Create Free Account
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <p className="max-w-xs mx-auto mt-5 text-sm text-center text-gray-600">
+                    This site is protected by reCAPTCHA and the Google{" "}
+                    <a
+                      href="#"
+                      title=""
+                      className="text-blue-600 transition-all duration-200 hover:underline hover:text-blue-700"
+                    >
+                      Privacy Policy
+                    </a>{" "}
+                    &
+                    <a
+                      href="#"
+                      title=""
+                      className="text-blue-600 transition-all duration-200 hover:underline hover:text-blue-700"
+                    >
+                      Terms of Service
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="md:hidden">
+              <blockquote className="mt-6">
+                <p className="text-lg leading-relaxed ">
+                  Discover extraordinary recipes, share your culinary creations,
+                  and connect with fellow food lovers. Your gastronomic journey
+                  starts here
+                </p>
+              </blockquote>
             </div>
           </div>
         </div>

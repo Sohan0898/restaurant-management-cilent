@@ -110,18 +110,18 @@ const Navbar = () => {
             <div>
               {user ? (
                 <>
-                  <a
+                  <button
                     onClick={handleLogOut}
-                    className="hidden lg:text-white lg:btn capitalize bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                    className="hidden  lg:text-white lg:btn lg:capitalize lg:bg-red-600 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
                   >
                     Sign Out
-                  </a>
+                  </button>
                 </>
               ) : (
                 <Link to={"/login"}>
                   <button
                     type="button"
-                    className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                    className="text-white bg-red-600 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
                   >
                     Sign In
                   </button>
@@ -163,7 +163,7 @@ const Navbar = () => {
                     <>
                       <a
                         onClick={handleLogOut}
-                        className=" text-white btn w-full capitalize bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                        className=" text-white btn w-full capitalize bg-red-700 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 "
                       >
                         Sign Out
                       </a>
@@ -172,7 +172,7 @@ const Navbar = () => {
                     <Link to={"/login"}>
                       <button
                         type="button"
-                        className="hidden text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2   text-center mr-3 lg:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                        className="hidden text-white bg-red-700 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
                       >
                         Sign In
                       </button>

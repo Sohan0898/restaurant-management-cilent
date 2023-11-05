@@ -6,180 +6,202 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const { googleSignIn, signInWithEmail } = useContext(AuthContext);
+  const [logError, setLogError] = useState("");
+  const navigate = useNavigate();
 
-    const { googleSignIn, signInWithEmail } = useContext(AuthContext);
-const [logError, setLogError] = useState("");
-const navigate = useNavigate();
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
 
-const handleGoogleSignIn = () => {
-googleSignIn()
-.then((result) => {
-console.log(result.user);    
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "You Successfully Login",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "You Successfully Login",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    navigate("/");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
+    setLogError("");
 
-};
+    // login user
 
-const handleLogin = (e) => {
-e.preventDefault();
-const form = new FormData(e.currentTarget);
-const email = form.get("email");
-const password = form.get("password");
-console.log(email, password);
-setLogError("");
+    signInWithEmail(email, password)
+      .then((result) => {
+        console.log(result.user);
+        e.target.reset();
 
-// login user
-
-signInWithEmail(email, password)
-  .then((result) => {
-    console.log(result.user);
-    e.target.reset();
-
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "You Successfully Login",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    navigate("/");
-  })
-  .catch((error) => {
-    console.error(error);
-    setLogError(error.message);
-  });
-
-};
-
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "You Successfully Login",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+        setLogError(error.message);
+      });
+  };
 
   return (
     <div>
-      <section className="bg-base-100">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full bg-base-200 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
-                Sign in to your account
-              </h1>
-              <form onSubmit={handleLogin} className="space-y-4 md:space-y-6" >
-                <div>
-                  <label className="block mb-2 text-sm font-medium ">
-                    Your email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="bg-gray-50 border border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@company.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium ">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
+      <section className="bg-base-100  py-5 my-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="flex items-center justify-center px-8 py-10 bg-base-100 sm:px-6 lg:px-8 sm:py-16 lg:py-24">
+            <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto border rounded-lg py-9 px-6 ">
+              <h2 className="text-3xl font-bold leading-tight text-black md:text-4xl">
+                Welcome Back <span className="text-red-500">Foodie!</span>
+              </h2>
+              <p className="mt-2 text-base text-gray-600">
+                New on Foodie Feast?{" "}
+                <Link to={"/register"}>
+                  <span className="font-medium text-red-600 transition-all duration-200 hover:text-red-700 hover:underline focus:text-red-700">
+                    Sign Up
+                  </span>
+                </Link>
+              </p>
+
+              <form onSubmit={handleLogin} className="mt-8">
+                <div className="space-y-5">
+                  <div>
+                    <label className="text-base font-medium text-gray-900">
+                      {" "}
+                      Email address{" "}
+                    </label>
+                    <div className="mt-2.5">
                       <input
-                        id="remember"
-                        aria-describedby="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        required=""
+                        type="email"
+                        name="email"
+                        required
+                        id=""
+                        placeholder="noreply@email.com"
+                        className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
                       />
                     </div>
+                  </div>
 
-                    {logError && (
-                    <p className="text-FusionRed font-semibold pt-2">
-                      {logError}
-                    </p>
-                  )}
-                    <div className="ml-3 text-sm">
-                      <label className="">
-                        Remember me
-                      </label>
+                  <div>
+                    <label className="text-base font-medium text-gray-900">
+                      {" "}
+                      Password{" "}
+                    </label>
+                    <div className="mt-2.5">
+                      <input
+                        type="password"
+                        name="password"
+                        required
+                        id=""
+                        placeholder="••••••••••"
+                        className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                      />
                     </div>
                   </div>
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Forgot password?
-                  </a>
+
+                  {logError && (
+                    <p className="text-red-500 font-semibold pt-2">
+                      ⚠️{logError}
+                    </p>
+                  )}
+
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="agree"
+                      id="agree"
+                      className="w-5 h-5 text-red-600 bg-white border-gray-200 rounded"
+                    />
+
+                    <label className="ml-3 text-sm font-medium text-gray-500">
+                      I agree to Foodie Feast{" "}
+                      <a
+                        href="#"
+                        title=""
+                        className="text-blue-600 hover:text-red-700 hover:underline"
+                      >
+                        Terms of Service
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        href="#"
+                        title=""
+                        className="text-blue-600 hover:text-red-700 hover:underline"
+                      >
+                        Privacy Policy
+                      </a>
+                    </label>
+                  </div>
+
+                  <div>
+                    <button
+                      type="submit"
+                      className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-red-600 border border-transparent rounded-md focus:outline-none hover:bg-red-700 focus:bg-red-700"
+                    >
+                      Login to account
+                    </button>
+                  </div>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full btn  bg-amber-500 hover:bg-amber-700  font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
-                >
-                  Sign in
-                </button>
-                <p className="text-sm font-light ">
-                  Don’t have an account yet?{" "}
-                  <Link to={'/register'}><span
-                    href="#"
-                    className="font-medium text-amber-500 hover:underline "
-                  >
-                    Sign up
-                  </span></Link>
-                </p>
               </form>
+
               <div className="mt-3 space-y-3">
                 <button
                   onClick={handleGoogleSignIn}
                   type="button"
-                  className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold transition-all duration-200 bg-base-100 border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover: focus: focus:outline-none"
+                  className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover:text-black focus:text-black focus:outline-none"
                 >
-                  <div className="absolute inset-y-0 left-0 p-4">
-                    <svg
-                      className="w-6 h-6 text-rose-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
-                    </svg>
+                  <div className="absolute inset-y-0 left-0 px-4 pt-2">
+                    <img
+                      className="w-10 "
+                      src="https://i.ibb.co/TT9y98j/icons8-google-48-1.png"
+                      alt=""
+                    />
                   </div>
                   Sign in with Google
                 </button>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center px-4 py-10 sm:py-16 lg:py-24 bg-gray-50 sm:px-6 lg:px-8">
+            <div>
+              <img
+                className="w-full h-[60vh] mx-auto"
+                src="https://i.ibb.co/B46spFX/Untitled-40-x-40-in-40-x-30-in.png"
+                alt=""
+              />
 
-                <button
-                  type="button"
-                  className="relative inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold  transition-all duration-200 bg-base-100 border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 hover: focus: focus:outline-none"
-                >
-                  <div className="absolute inset-y-0 left-0 p-4">
-                    <svg
-                      className="w-6 h-6 text-[#2563EB]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
-                    </svg>
-                  </div>
-                  Sign in with Facebook
-                </button>
+              <div className="w-full max-w-md mx-auto xl:max-w-xl">
+                <h3 className="text-2xl font-bold text-center text-black">
+                  Foodie Feast Login
+                </h3>
+                <p className="leading-relaxed text-center text-gray-500 mt-2.5">
+                  Sign in to Foodie Feast and continue your culinary journey.
+                  Explore a world of flavors, connect with fellow foodies, and
+                  savor delightful recipes and dining experiences. Your next
+                  delicious adventure awaits!
+                </p>
+
+                <div className="flex items-center justify-center mt-10 space-x-3">
+                  <div className="bg-red-500 rounded-full w-20 h-1.5"></div>
+
+                  <div className="bg-gray-200 rounded-full w-12 h-1.5"></div>
+
+                  <div className="bg-gray-200 rounded-full w-12 h-1.5"></div>
+                </div>
               </div>
             </div>
           </div>
