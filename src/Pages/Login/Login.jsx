@@ -61,10 +61,10 @@ const Login = () => {
 
   return (
     <div>
-      <section className="bg-base-100  py-5 my-10">
+      <section className="bg-base-100  pt-5 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex items-center justify-center px-8 py-10 bg-base-100 sm:px-6 lg:px-8 sm:py-16 lg:py-24">
-            <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto border rounded-lg py-9 px-6 ">
+          <div className="flex items-center justify-center px-8  bg-base-100 sm:px-6 lg:px-8 py-16 lg:py-24">
+            <div className=" border rounded-lg py-9 px-6 ">
               <h2 className="text-3xl font-bold leading-tight text-black md:text-4xl">
                 Welcome Back <span className="text-red-500">Foodie!</span>
               </h2>

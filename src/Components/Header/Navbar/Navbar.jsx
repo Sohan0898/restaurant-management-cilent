@@ -1,10 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "./Logo";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // logout
 
   const handleLogOut = () => {
     logOut()
@@ -12,6 +15,27 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
 
+  //scroll to shadow
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+  
+  const location = useLocation();
+  const isHomeRoute = location.pathname === "/";
+
+  //menubar
   const navMenu = (
     <>
       <li>
@@ -28,7 +52,11 @@ const Navbar = () => {
         <NavLink
           to="/allFood"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-red-400" : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-red-500"
+              : `${isHomeRoute ? "text-amber-400" : ""} `
           }
         >
           All Food
@@ -38,7 +66,11 @@ const Navbar = () => {
         <NavLink
           to="/blog"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-red-400" : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-red-500"
+              : `${isHomeRoute ? "text-amber-400" : ""}`
           }
         >
           Blog
@@ -49,20 +81,35 @@ const Navbar = () => {
 
   return (
     <div className="">
-      <nav className="bg-base-200 fixed w-full z-20 top-0 left-0">
-        <div className="max-w-screen-2xl mx-auto px-4 lg:px-20 py-4 flex flex-wrap items-center justify-between">
+      <nav
+        className={`${
+          isHomeRoute ? "bg-transparent" : "bg-base-200"
+        } fixed w-full z-20 top-0 left-0 ${
+          isScrolled ? "bg-white " : ""
+        } scroll-[1px] ${isScrolled ? "shadow-lg" : ""}`}
+        style={{
+          transition: "background-color 0.5s ease, box-shadow 0.6s ease",
+        }}
+      >
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-4 flex flex-wrap items-center justify-between">
           <span className="flex items-center">
             <Logo></Logo>
           </span>
           <div className="flex items-center lg:order-2">
             {user && (
               <div className="dropdown dropdown-end mr-4 ">
-                <div className="flex  md:border  md:rounded-lg  md:bg-base-100 p-2 justify-center items-center gap-3">
+                <div
+                  className={`flex   ${
+                    isHomeRoute ? "md:border md:border-gray-600 " : "md:border"
+                  }  md:rounded-lg ${
+                    isHomeRoute ? "bg-none" : "md:bg-base-100"
+                  }  p-2 justify-center items-center gap-3`}
+                >
                   <div className="hidden md:grid md:text-end">
                     <p className="text-lg font-semibold">
                       {user?.displayName ? user.displayName : "Anonymous User"}
                     </p>
-                    <p className="text-sm text-amber-500 ">{user.email}</p>
+                    <p className="text-sm text-red-500 ">{user.email}</p>
                   </div>
                   <div>
                     <label
@@ -112,7 +159,7 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={handleLogOut}
-                    className="hidden  lg:text-white lg:btn lg:capitalize lg:bg-red-600 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
+                    className="hidden  lg:text-white lg:btn lg:capitalize lg:bg-red-600 border-none hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
                   >
                     Sign Out
                   </button>
@@ -183,7 +230,7 @@ const Navbar = () => {
             </div>
           </div>
           <div
-            className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+            className="items-center  justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
             id="navbar-sticky"
           >
             <ul className="flex flex-col p-4 lg:p-0 mt-4 font-medium rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 ">

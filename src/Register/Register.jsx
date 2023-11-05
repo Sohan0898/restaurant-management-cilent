@@ -62,16 +62,16 @@ const Register = () => {
 
   return (
     <div>
-      <section className=" bg-base-100 py-16 mt-20">
-        <div className="max-w-6xl px-4 md:px-1 mx-auto">
-          <div className="grid grid-cols-1 md:items-stretch md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10">
-            <div className="flex flex-col justify-between lg:py-5">
+      <section className=" bg-base-100 py-16 mt-8">
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-5 my-10">
+          <div className="grid grid-cols-1 md:items-stretch md:grid-cols-1 md: lg:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10">
+            <div className="flex flex-col justify-between lg:py-8">
               <div>
                 <h2 className="text-3xl font-bold leading-tight  sm:text-4xl lg:leading-tight lg:text-5xl">
                   It’s time to join{" "}
                   <span className="text-amber-500">Foodie Feast!</span>
                 </h2>
-                <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed ">
+                <p className="mt-4 text-base leading-relaxed ">
                   Ready to embark on a mouthwatering adventure? Sign up for
                   Foodie Feast and become part of a vibrant food community.{" "}
                 </p>
@@ -83,7 +83,6 @@ const Register = () => {
                   src="https://i.ibb.co/hXh2bJL/Food-Feast.png"
                   alt=""
                 />
-
                 <blockquote className="mt-20">
                   <p className="text-lg leading-relaxed ">
                     Discover extraordinary recipes, share your culinary
@@ -95,7 +94,7 @@ const Register = () => {
             </div>
 
             <div className="lg:pl-12">
-              <div className="overflow-hidden bg-base-200 rounded-md">
+              <div className="overflow-hidden bg-base-200  rounded-md">
                 <div className="p-6 sm:p-10">
                   <h3 className="text-3xl font-semibold text-black">
                     Sign Up in{" "}
