@@ -139,16 +139,16 @@ const Navbar = () => {
                     </p>
                     <p className="text-sm text-red-500 ">{user.email}</p>
                   </div>
-                  <div className="w-full px-2 space-y-2  ">
-                    <span className="btn text-center flex items-center ">
-                      Item1
-                    </span>
-                    <span className="btn text-center flex items-center">
-                      Item1
-                    </span>
-                    <span className="btn text-center flex items-center">
-                      Item1
-                    </span>
+                  <div className="w-full px-2 space-y-4  ">
+                    <Link to={'/myAddedFood'}><span className="btn bg-amber-500 text-white capitalize text-center flex items-center ">
+                    My added food
+                    </span></Link>
+                    <Link to={'/addFood'}><span className="btn mt-2 bg-amber-500 text-white capitalize text-center flex items-center">
+                    Add a food
+                    </span></Link>
+                    <Link to={'/orderedFood'}><span className="btn mt-2 bg-amber-500 text-white capitalize text-center flex items-center">
+                    My ordered food
+                    </span></Link>
                   </div>
                 </ul>
               </div>
@@ -202,7 +202,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content mt-9 z-[1] menu p-4 space-y-1 shadow bg-red-100 rounded-box w-52"
+                className="dropdown-content mt-9 z-[1] menu p-4 space-y-1 shadow bg-gray-200 rounded-box w-52"
               >
                 {navMenu}
                 <div>
