@@ -1,12 +1,15 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Logo from "../../Components/Header/Navbar/Logo";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const AddFood = () => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     axios
@@ -28,7 +31,7 @@ const AddFood = () => {
     const form = event.target;
 
     const image = form.image.value;
-    const name = form.name.value;
+    const foodName = form.foodName.value;
     const category = form.category.value;
     const price = form.price.value;
     const description = form.description.value;
@@ -36,40 +39,53 @@ const AddFood = () => {
     const origin = form.origin.value;
     const quantity = form.quantity.value;
 
-    const newFood = {
-      image,
-      name,
-      category,
-      origin,
-      price,
-      description,
-      rating,
-      quantity,
-    };
+    if (user) {
+      const email = user.email;
+      const name = user.displayName;
 
-    console.log("newFood: ", newFood);
+      const newFood = {
+        email,
+        name,
+        image,
+        foodName,
+        category,
+        origin,
+        price,
+        description,
+        rating,
+        quantity,
+      };
 
-    // added food DB
+      console.log("newFood: ", newFood);
 
-    axios
-      .post("http://localhost:5000/myAddedFood", newFood)
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Food has been added",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          form.reset();
-        }
-      })
-      .catch((error) => {
-        console.error("error on fetch: ", error);
+      // added food DB
+
+      axios
+        .post("http://localhost:5000/myAddedFood", newFood)
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Food has been added",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            form.reset();
+          }
+        })
+        .catch((error) => {
+          console.error("error on fetch: ", error);
+        });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Please check your credentials",
       });
+    }
   };
 
   return (
@@ -87,7 +103,7 @@ const AddFood = () => {
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto mt-12 overflow-hidden bg-white rounded-md shadow-md lg:mt-20">
+          <div className="mx-auto  mt-12 overflow-hidden bg-white rounded-md shadow-md lg:mt-14">
             <div className="grid items-stretch grid-cols-1 lg:grid-cols-5">
               <div className="lg:col-span-3">
                 <div className="p-6 sm:p-10">
@@ -105,7 +121,7 @@ const AddFood = () => {
                         <div className="mt-2.5 relative">
                           <input
                             type="text"
-                            name="name"
+                            name="foodName"
                             required
                             placeholder="Enter Food Name"
                             className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
@@ -242,7 +258,7 @@ const AddFood = () => {
                           type="submit"
                           className="inline-flex items-center justify-center w-full px-4 py-4 mt-2 text-base font-semibold text-white transition-all duration-200 bg-red-600 border border-transparent rounded-md focus:outline-none hover:bg-red-700 focus:bg-red-700"
                         >
-                          Send
+                          Add Food
                         </button>
                       </div>
                     </div>
