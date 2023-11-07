@@ -10,7 +10,7 @@ const FoodDetails = () => {
   const { _id, foodName, image, price, description, origin, name, email } =
     AddedFoodDetails;
 
-  // If the user is the owner
+  // If the user is the owner cant add food
 
   const isOwner = user?.email === email;
   const handleOrder = () => {
