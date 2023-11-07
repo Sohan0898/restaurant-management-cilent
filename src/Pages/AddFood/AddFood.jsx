@@ -169,6 +169,7 @@ const AddFood = () => {
                         <div className="mt-2.5 relative">
                           <select
                             name="quantity"
+                            required
                             value={selectedQuantity}
                             onChange={(e) =>
                               setSelectedQuantity(e.target.value)
@@ -177,8 +178,8 @@ const AddFood = () => {
                           >
                             <option value="">Select Food Quantity</option>
                             {Array.from({ length: 50 }, (_, i) => (
-                              <option key={i + 1} value={i + 1}>
-                                {i + 1}
+                              <option key={i} value={i}>
+                                {i}
                               </option>
                             ))}
                           </select>

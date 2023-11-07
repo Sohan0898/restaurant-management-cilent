@@ -1,10 +1,30 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
   const AddedFoodDetails = useLoaderData();
+  const { user } = useContext(AuthContext);
 
   const { _id, foodName, image, price, description, origin, name, email } =
     AddedFoodDetails;
+
+  // If the user is the owner
+
+  const isOwner = user?.email === email;
+  const handleOrder = () => {
+    if (isOwner) {
+      Swal.fire({
+        title: "Invalid Order",
+        text: "You can't order your own food item.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    } else {
+      window.location.href = `/purchaseFood/${_id}`;
+    }
+  };
 
   return (
     <div className="mt-40">
@@ -20,9 +40,9 @@ const FoodDetails = () => {
           <p>{origin}</p>
           <p>{price}</p>
           <div className="card-actions justify-end">
-            <Link to={`/purchaseFood/${_id}`}>
-              <button className="btn btn-primary">Order</button>
-            </Link>
+            <button className="btn btn-primary" onClick={handleOrder}>
+              Order
+            </button>
           </div>
         </div>
       </div>

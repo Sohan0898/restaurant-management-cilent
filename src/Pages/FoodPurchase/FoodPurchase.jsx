@@ -12,13 +12,33 @@ const FoodPurchase = () => {
   const handleOrderFood = (event) => {
     event.preventDefault();
     const form = event.target;
-    const orderedQuantity = form.orderedQuantity.value;
+    const orderedQuantity = parseInt(form.orderedQuantity.value, 10);
+
+    // order quantity 0 or greater than
+
+    if (orderedQuantity <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Quantity",
+        text: "Please enter a valid quantity.",
+      });
+      return;
+    }
+
+    if (orderedQuantity > quantity) {
+      Swal.fire({
+        icon: "error",
+        title: "Quantity Exceeds Availability",
+        text: "You can't buy more than the available quantity.",
+      });
+      return;
+    }
 
     if (user) {
-      const newEmail = user.email;
-      const newName = user.displayName;
+      const newEmail = user?.email;
+      const newName = user?.displayName;
 
-      // date
+      // ordered date send to DB
       const today = new Date();
       const options = {
         weekday: "short",
@@ -27,8 +47,6 @@ const FoodPurchase = () => {
         year: "numeric",
       };
       const formattedDate = today.toLocaleDateString("en-US", options);
-
-      console.log(formattedDate);
 
       const newOrderedFood = {
         newEmail,
@@ -42,19 +60,15 @@ const FoodPurchase = () => {
         formattedDate,
       };
 
-      console.log("newOrderedFood: ", newOrderedFood);
-      // added orderedfood DB
-
       axios
         .post("http://localhost:5000/orderedFood", newOrderedFood)
         .then((response) => {
           const data = response.data;
-          console.log(data);
           if (data.insertedId) {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "You order food successfully",
+              title: "You ordered food successfully",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -63,12 +77,6 @@ const FoodPurchase = () => {
         .catch((error) => {
           console.error("error on fetch: ", error);
         });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Login Failed",
-        text: "Please check your credentials",
-      });
     }
   };
 
@@ -162,20 +170,20 @@ const FoodPurchase = () => {
                           </div>
                         </div>
                         <div className="sm:col-span-2">
-                        <label className="text-base font-medium text-gray-900">
-                          {" "}
-                          Anything else? (optional) {" "}
-                        </label>
-                        <div className="mt-2.5 relative">
-                          <textarea
-                            type="text"
-                            name="description"
-                            placeholder="Extra cheese, mayonnaise or suace etc."
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md resize-y bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
-                            rows="4"
-                          ></textarea>
+                          <label className="text-base font-medium text-gray-900">
+                            {" "}
+                            Anything else? (optional){" "}
+                          </label>
+                          <div className="mt-2.5 relative">
+                            <textarea
+                              type="text"
+                              name="description"
+                              placeholder="Extra cheese, mayonnaise or suace etc."
+                              className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md resize-y bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                              rows="4"
+                            ></textarea>
+                          </div>
                         </div>
-                      </div>
 
                         <div className="sm:col-span-2">
                           <button
