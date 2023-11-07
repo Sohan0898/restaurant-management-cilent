@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import TopFoodCard from "./TopFoodCard";
 
 import Countdown from "./Countdown";
+import Logo from "../../Header/Navbar/Logo";
 
 const TopFood = () => {
   const allFood = useLoaderData();
@@ -48,8 +49,7 @@ const TopFood = () => {
               <div className=" px-4 mx-auto sm:px-6 lg:px-8 ">
                 <div className="grid grid-rows-1 justify-center items-center gap-6  md:flex md:justify-between md:gap-5 md:items-center md:text-left ">
                   <h1 className="text-3xl md:text-3xl lg:text-5xl font-paytone py-6 text-start mt-4">
-                    <span className="text-red-500">Foodie</span>
-                    <span className="text-amber-500">Feast</span> Top Food
+                    Best Deals November
                   </h1>
 
                   {/* coundowntimer here */}
@@ -72,13 +72,21 @@ const TopFood = () => {
           </div>
         </div>
 
+        <div>
+          <h1 className="text-3xl md:text-3xl text-center flex justify-center items-center lg:text-5xl font-paytone mt-12 py-6">
+            <span>
+              <Logo></Logo>
+            </span>{" "}
+            Top Selling Food
+          </h1>
+        </div>
         <div className="grid mt-16 lg:mt-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-10 md:gap-10 lg:gap-16">
           {topFood?.map((top) => (
             <TopFoodCard key={top._id} top={top}></TopFoodCard>
           ))}
         </div>
       </div>
-      <section className="py-10 bg-gray-300 sm:py-16">
+      <section className="py-10 bg-amber-500 sm:py-16">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center sm:flex sm:items-center sm:justify-center sm:text-left">
             <h2 className="text-5xl font-bold text-black">
@@ -89,7 +97,7 @@ const TopFood = () => {
               <span
                 href="#"
                 title=""
-                className="inline-flex items-center justify-center flex-shrink-0 px-4 py-4 mt-8 text-base font-semibold text-white transition-all duration-200 bg-amber-500 rounded-md sm:mt-0 sm:ml-8 lg:ml-16 hover:bg-red-500 focus:bg-red-500"
+                className="inline-flex items-center justify-center flex-shrink-0 px-4 py-4 mt-8 text-base font-semibold  transition-all duration-200 bg-white rounded-md sm:mt-0 sm:ml-8 lg:ml-16 hover:bg-red-500 focus:bg-red-500"
                 role="button"
               >
                 See All Food Items

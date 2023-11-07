@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import AllFoodCard from "./AllFoodCard";
 import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 const AllFood = () => {
   const addedFood = useLoaderData();
@@ -18,17 +19,17 @@ const AllFood = () => {
 
   return (
     <div>
-      <section className=" bg-base-200">
+      <section className=" bg-base-100">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-5 my-10">
-          <form onSubmit={handleSearch} className="mt-20 md:mt-28">
+          <form onSubmit={handleSearch} className=" mt-20 md:mt-28">
             <div className="flex justify-center items-center ">
               <div className="flex-1 w-3/4 min-w-0 px-4 ">
                 <label className=""></label>
                 <input
                   type="text"
                   name="search"
-                  placeholder="Search your food...."
-                  className="block w-full px-4 py-4 text-base text-black placeholder-gray-500 transition-all duration-200 border-transparent rounded-md caret-indigo-600 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+                  placeholder="Search your desire food item...."
+                  className="block w-full px-4 py-4 text-base bg-gray-200 text-black placeholder-gray-500 transition-all duration-200 border-transparent rounded-md caret-indigo-600 focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
                   value={searchFood}
                   onChange={(e) => setSearchFood(e.target.value)}
                   required
@@ -37,17 +38,21 @@ const AllFood = () => {
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center w-auto px-4 py-4  font-semibold text-white transition-all duration-200 bg-amber-500 border border-transparent rounded-md  hover:bg-amber-700 focus:bg-amber-700"
+                className="inline-flex items-center justify-center w-auto px-8 py-4  font-semibold text-white transition-all duration-200 bg-amber-500 border border-transparent rounded-md  hover:bg-amber-700 focus:bg-amber-700"
               >
                 Search
+                <span className="pl-2 text-xl">
+                  {" "}
+                  <FaSearch></FaSearch>
+                </span>
               </button>
             </div>
           </form>
 
           <div>
             <h1 className="text-4xl md:text-5xl font-paytone text-center p-16">
-              <span className="text-amber-500">Foodie Feast</span>{" "}
-              {filteredFood.length} Items
+              <span className="text-amber-500">Foodie Feast</span> All Items :{" "}
+              {filteredFood.length}
             </h1>
           </div>
 
