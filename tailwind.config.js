@@ -6,7 +6,7 @@ export default {
       fontFamily: {
         gabarito: ["Gabarito", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
-        exoexo: ["Exo 2", "sans-serif"],
+        marker: ["Permanent Marker", "cursive"],
         paytone: ["Paytone One", "sans-serif"],
       },
     },

@@ -15,17 +15,17 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
               <div className="space-y-5">
-                <div className="flex justify-start items-center gap-4">
+                <div className="flex justify-start  items-center mt-20 md:mt-0 gap-4">
                   <progress
                     className="progress progress-warning w-9"
                     value="100"
                     max="100"
                   ></progress>
-                  <h3 className="font-montserrat font-medium text-gray-300 ">
+                  <h3 className="font-montserrat font-medium  text-gray-300 ">
                     Welcome To
                   </h3>
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-paytone">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl text-white font-paytone">
                   <span className="text-red-500">Foodie Feast</span> |<br />{" "}
                   Savor Every <br /> Bite
                 </h1>
@@ -40,7 +40,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-5">
+          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-3">
             <a
               href="#slide4"
               className="text-4xl hover:text-gray-200 text-white"
@@ -61,7 +61,7 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
               <div className="space-y-5">
-                <div className="flex justify-start items-center gap-4">
+                <div className="flex justify-start  items-center mt-20 md:mt-0 gap-4">
                   <progress
                     className="progress progress-warning w-9"
                     value="100"
@@ -71,7 +71,7 @@ const Banner = () => {
                     Welcome To
                   </h3>
                 </div>
-                <h1 className=" text-4xl md:text-5xl lg:text-6xl text-white font-paytone">
+                <h1 className=" text-3xl md:text-5xl lg:text-6xl text-white font-paytone">
                   <span className="text-red-500">Foodie Feast</span> |<br />{" "}
                   Nourish Your <br /> Day
                 </h1>
@@ -85,7 +85,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-5">
+          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-3">
             <a
               href="#slide1"
               className="text-4xl hover:text-gray-200 text-white"
@@ -106,7 +106,7 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
               <div className="space-y-5">
-                <div className="flex justify-start items-center gap-4">
+                <div className="flex justify-start  items-center mt-20 md:mt-0 gap-4">
                   <progress
                     className="progress progress-warning w-9"
                     value="100"
@@ -116,7 +116,7 @@ const Banner = () => {
                     Welcome To
                   </h3>
                 </div>
-                <h1 className=" text-4xl md:text-5xl lg:text-6xl text-white font-paytone">
+                <h1 className=" text-3xl md:text-5xl lg:text-6xl text-white font-paytone">
                   <span className="text-red-500">Foodie Feast</span> |<br />{" "}
                   Culinary Bliss <br /> Awaits
                 </h1>
@@ -131,7 +131,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-5">
+          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-3">
             <a
               href="#slide2"
               className="text-4xl hover:text-gray-200 text-white"
@@ -152,7 +152,7 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
               <div className="space-y-5">
-                <div className="flex justify-start items-center gap-4">
+                <div className="flex justify-start  items-center mt-20 md:mt-0 gap-4">
                   <progress
                     className="progress progress-warning w-9"
                     value="100"
@@ -162,7 +162,7 @@ const Banner = () => {
                     Welcome To
                   </h3>
                 </div>
-                <h1 className="  text-4xl md:text-5xl lg:text-6xl text-white font-paytone">
+                <h1 className="  text-3xl md:text-5xl lg:text-6xl text-white font-paytone">
                   <span className="text-red-500">Foodie Feast</span> |<br />{" "}
                   Feast for the <br /> Senses
                 </h1>
@@ -177,7 +177,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-5">
+          <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 right-10 bottom-3">
             <a
               href="#slide3"
               className="text-4xl hover:text-gray-200 text-white"
