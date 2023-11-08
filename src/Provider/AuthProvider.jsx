@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../Firebase/firebase.init";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -43,8 +44,24 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("ovserving", currentUser);
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser ={email : userEmail};
       setUser(currentUser);
       setLoading(false);
+      // jwt token
+      if(currentUser){
+        axios.post('http://localhost:5000/jwt', loggedUser ,{ withCredentials : true })
+        .then(res => {
+          console.log('token res', res.data);
+        })
+      }
+
+      else {
+        axios.post('http://localhost:5000/logOut', loggedUser ,{ withCredentials : true })
+        .then(res => {
+          console.log( res.data);
+        })
+      }
     });
 
     return () => {

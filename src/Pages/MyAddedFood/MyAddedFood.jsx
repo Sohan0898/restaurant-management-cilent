@@ -1,45 +1,74 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import RowItems from "./RowItems";
 import { Helmet } from "react-helmet-async";
 
 const MyAddedFood = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  
 
   const [foodItems, setFoodItems] = useState([]);
   console.log(foodItems);
 
   useEffect(() => {
-    fetch(` http://localhost:5000/myAddedFood?email=${user?.email}`)
+    fetch(` http://localhost:5000/myAddedFood?email=${user?.email}`, {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setFoodItems(data));
   }, [user?.email]);
 
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center w-2/5 mx-auto h-[100vh]">
+        <img src="https://i.ibb.co/0sDxQzn/drawing-2802.gif" alt="" />
+      </div>
+    );
+  }
+
   return (
     
-    <div className="bg-gray-600 mt-40 ">
+    <div className="mt-40 ">
       <Helmet>
         <title>Foodie Feast | {user?.displayName} Added Food</title>
       </Helmet>
-    <div className="container mx-auto p-6 ">
-        <div className="overflow-x-auto ">
-            <table className="w-full  bg-white shadow-md rounded my-6">
-                <thead>
-                    <tr className="border-b">
-                        <th className="text-left p-3 px-5 hidden sm:table-cell">Image</th>
-                        <th className="text-left p-3 px-5">Name</th>
-                        <th className="text-left p-3 px-5 hidden sm:table-cell">Category</th>
-                        <th className="text-left p-3 px-5">Price</th>
-                        <th className="text-left p-3 px-5">Update</th>
-                    </tr>
-                </thead>
+      <div className="max-w-screen-2xl mx-auto px-2 md:px-6 lg:px-16 my-14 pb-16">
+      <h2 className="text-4xl text-center font-bold mt-36">
+        <span className="text-red-500">
+          {user?.displayName ? user?.displayName : "Login User"}'s
+        </span>{" "}
+        Added items
+      </h2>
+      <div className="pt-10">
+        { foodItems=== '' ? (
+          <div className="flex justify-center items-center h-[40vh]">
+            <span className=" font-montserrat text-2xl font-bold text-red-500">
+              Items is loading....
+            </span>
+          </div>
+        ) : foodItems?.length > 0 ? (
+          <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-5">
+            {foodItems?.map((carts) => (
+              <RowItems
+                key={carts._id}
+                carts={carts}
                 
-                {foodItems?.map((items) => (
-              <RowItems key={items._id} items={items}></RowItems>
+              ></RowItems>
             ))}
-
-            </table>
-        </div>
+          </div>
+        ) : (
+          <div className="min-h-[40vh] w-auto text-center">
+            <img
+              className="h-[400px] mx-auto"
+              src="https://i.ibb.co/Fx7ZLsB/Untitled-design-1.png"
+              alt=""
+            />
+            <p className="text-2xl lg:text-4xl font-bold pb-14">
+              No Food items available right now!!!
+            </p>
+          </div>
+        )}
+      </div>
     </div>
     </div>
   );

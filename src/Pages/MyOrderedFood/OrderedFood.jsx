@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import OrderFoodCarts from "./OrderFoodCarts";
+import { Helmet } from "react-helmet-async";
 
 const OrderedFood = () => {
   const [cartData, setCardData] = useState(null);
@@ -12,7 +13,7 @@ const OrderedFood = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(` http://localhost:5000/orderedFood/${user.email}`)
+    fetch(` http://localhost:5000/orderedFood/${user.email}`, {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setCardData(data));
   }, [user.email, loading]);
@@ -21,6 +22,9 @@ const OrderedFood = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-2 md:px-6 lg:px-16 my-14 pb-16">
+      <Helmet>
+        <title>Foodie Feast | Ordered Food</title>
+      </Helmet>
       <h2 className="text-4xl text-center font-bold mt-36">
         <span className="text-amber-500">
           {user?.displayName ? user?.displayName : "Login User"}'s
@@ -31,7 +35,7 @@ const OrderedFood = () => {
         {cartData === null ? (
           <div className="flex justify-center items-center h-[40vh]">
             <span className=" font-montserrat text-2xl font-bold text-red-500">
-              Cart is loading....
+              Order is loading....
             </span>
           </div>
         ) : cartData.length > 0 ? (
@@ -53,7 +57,7 @@ const OrderedFood = () => {
               alt=""
             />
             <p className="text-2xl lg:text-4xl font-bold pb-14">
-              No cart item available right now!!!
+              Ordered items not available right now!!!
             </p>
           </div>
         )}

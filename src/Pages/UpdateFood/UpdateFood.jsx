@@ -58,7 +58,7 @@ const UpdateFood = () => {
     // added food DB
 
     axios
-      .put(`http://localhost:5000/myAddedFood/${_id}`, updateFood)
+      .put(`http://localhost:5000/myAddedFood/${_id}`, updateFood, {withCredentials : true} )
       .then((response) => {
         const data = response.data;
         console.log(data);

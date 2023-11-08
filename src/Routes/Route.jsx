@@ -13,6 +13,8 @@ import FoodDetails from "../Components/FoodDetails/FoodDetails";
 import FoodPurchase from "../Pages/FoodPurchase/FoodPurchase";
 import PrivateRoute from "./PrivateRoute";
 import UpdateFood from "../Pages/UpdateFood/UpdateFood";
+import OurMenu from "../Pages/Menu/OurMenu";
+
 
 const Route = createBrowserRouter([
   {
@@ -80,7 +82,7 @@ const Route = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/myAddedFood/${params.id}`),
+          fetch(`http://localhost:5000/myAddedFood/${params.id}`, {credentials: 'include'}),
       },
       {
         path: "/updateFood/:id",
@@ -92,6 +94,14 @@ const Route = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/myAddedFood/${params.id}`),
       },
+      {
+        path: "/ourMenu",
+        element: (
+          <OurMenu></OurMenu>
+        ),
+        
+      },
+      
     ],
   },
 ]);

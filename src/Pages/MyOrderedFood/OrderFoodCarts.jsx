@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+
 import Swal from "sweetalert2";
 
 const OrderFoodCarts = ({ setLoading, loading,  carts }) => {
@@ -32,9 +32,7 @@ const OrderFoodCarts = ({ setLoading, loading,  carts }) => {
 
   return (
     <div>
-      <Helmet>
-        <title>Foodie Feast | Ordered Food</title>
-      </Helmet>
+      
       <div className="flex flex-col max-w-screen-2xl  px-6 md:px-10 lg:px-16 p-6 mx-auto  space-y-4 sm:p-10 ">
         
         <ul className="flex flex-col bg-slate-200 px-7  ">

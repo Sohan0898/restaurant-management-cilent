@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import AllFoodCard from "./AllFoodCard";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
@@ -10,6 +10,42 @@ const AllFood = () => {
 const{loading} =useContext(AuthContext);
   const [searchFood, setSearchFood] = useState("");
   const [filteredFood, setFilteredFood] = useState(addedFood);
+  const [countData, setCountData] = useState();
+  const [currentPage , setCurrentPage] = useState(0);
+
+   //pagination
+  useEffect(() => {
+    fetch(` http://localhost:5000/myAddedFoodCount`)
+      .then((res) => res.json())
+      .then((data) => setCountData(data));
+  }, []);
+
+  console.log(countData?.count);
+
+  const foodsPerPage = 9;
+  const noOfPages = Math.ceil(countData?.count/foodsPerPage);
+
+  const pages = []
+  for(let i = 0; i < noOfPages; i++){
+    pages.push(i)
+  }
+
+  console.log(pages);
+
+
+  const handlePrev = () =>  {
+    if (currentPage > 0){
+      setCurrentPage (currentPage-1);
+    }
+
+  }
+  const handleNext = () =>  {
+    if (currentPage < pages.length - 1){
+      setCurrentPage (currentPage + 1);
+    }
+
+  }
+
 
   if (loading) {
     return (
@@ -26,6 +62,8 @@ const{loading} =useContext(AuthContext);
     );
     setFilteredFood(filter);
   };
+
+
 
   return (
     <div>
@@ -76,6 +114,21 @@ const{loading} =useContext(AuthContext);
           </div>
         </div>
       </section>
+
+              <div className="text-center space-x-2   py-10">
+                
+                <button onClick={handlePrev}
+                className="btn">prev</button>
+                {
+                  pages.map(page => <button 
+
+                    onClick={()=> setCurrentPage(page)}
+                    className={`btn px-6     ${currentPage === page ? 'active bg-red-500 text-white' : ''}`}
+                    key={page} >{page}</button>)
+                }
+                <button onClick={handleNext} className="btn">next</button>
+              </div>
+
     </div>
   );
 };

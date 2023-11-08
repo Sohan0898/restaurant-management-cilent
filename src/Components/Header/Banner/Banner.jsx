@@ -2,6 +2,7 @@ import {
   PiArrowFatLineLeftFill,
   PiArrowFatLineRightFill,
 } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -34,9 +35,11 @@ const Banner = () => {
                   yourself in a symphony of flavors, prepared with passion and
                   creativity.
                 </p>
+                <br />
+                <Link  to={'/ourMenu'}>
                 <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
                   View Our Menu
-                </button>
+                </button></Link>
               </div>
             </div>
           </div>
@@ -79,9 +82,10 @@ const Banner = () => {
                   Start your day right with our wholesome, healthy breakfast
                   options. Fuel your body with natural goodness.
                 </p>
-                <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
+                <br />
+                <Link to={'/ourMenu'}><button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
                   See Breakfast Choices
-                </button>
+                </button></Link>
               </div>
             </div>
           </div>
@@ -125,9 +129,10 @@ const Banner = () => {
                   masterpiece. Unwind, dine, and savor the blissful taste of
                   excellence.
                 </p>
-                <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
+                <br />
+                <Link to={'/ourMenu'}><button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
                   View Our Specials
-                </button>
+                </button></Link>
               </div>
             </div>
           </div>
@@ -171,9 +176,11 @@ const Banner = () => {
                   buds and captivates your senses. Experience culinary artistry
                   like never before.
                 </p>
+                <br />
+                <Link to ={'/ourMenu'}>
                 <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
                   Explore Our Flavors
-                </button>
+                </button></Link>
               </div>
             </div>
           </div>

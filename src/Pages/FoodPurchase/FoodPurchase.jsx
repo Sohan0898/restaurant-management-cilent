@@ -62,7 +62,7 @@ const FoodPurchase = () => {
       };
 
       axios
-        .post("http://localhost:5000/orderedFood", newOrderedFood)
+        .post("http://localhost:5000/orderedFood", newOrderedFood , {withCredentials: true})
         .then((response) => {
           const data = response.data;
           if (data.insertedId) {
