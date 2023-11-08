@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import Logo from "../../Components/Header/Navbar/Logo";
+import { Helmet } from "react-helmet-async";
 
 const UpdateFood = () => {
   const [countries, setCountries] = useState([]);
@@ -77,14 +79,27 @@ const UpdateFood = () => {
 
   return (
     <div className=" pt-5 mt-16 md:mt-10 ">
+      <Helmet>
+        <title>Foodie Feast | Update Food</title>
+      </Helmet>
       <section className="py-10 bg-gradient-to-t from-gray-400 to-base-200 sm:py-16 lg:py-24">
+      <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl  font-paytone leading-tight flex justify-center items-center gap-2 sm:text-4xl lg:text-5xl">
+              Update <Logo></Logo> Item
+            </h2>
+            <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed ">
+              At Foodie Feast, we believe that great food is not just a meal.
+              Its an experience that tantalizes your taste buds and leaves you
+              craving for more.
+            </p>
+          </div>
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="mx-auto  mt-12 overflow-hidden bg-white rounded-md shadow-md lg:mt-14">
             <div className="grid items-stretch grid-cols-1 lg:grid-cols-5">
               <div className="lg:col-span-3">
                 <div className="p-6 sm:p-10">
-                  <h3 className="text-2xl font-semibold text-red-500">
-                    Add your desire food item
+                  <h3 className="text-2xl font-semibold text-amber-500">
+                    Update your food item
                   </h3>
 
                   <form onSubmit={handleUpdateFood} className="mt-8">
@@ -100,7 +115,7 @@ const UpdateFood = () => {
                             name="foodName"
                             required
                             defaultValue={foodName}
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                           />
                         </div>
                       </div>
@@ -116,7 +131,7 @@ const UpdateFood = () => {
                             name="image"
                             required
                             defaultValue={image}
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                           />
                         </div>
                       </div>
@@ -132,7 +147,7 @@ const UpdateFood = () => {
                             name="category"
                             required
                             defaultValue={category}
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                           />
                         </div>
                       </div>
@@ -149,7 +164,7 @@ const UpdateFood = () => {
                             onChange={(e) =>
                               setSelectedQuantity(e.target.value)
                             }
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                           >
                             <option value="">Select Food Quantity</option>
                             {Array.from({ length: 50 }, (_, i) => (
@@ -171,7 +186,7 @@ const UpdateFood = () => {
                             name="price"
                             required
                             defaultValue={price}
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                           />
                         </div>
                       </div>
@@ -186,7 +201,7 @@ const UpdateFood = () => {
                             name="rating"
                             required
                             defaultValue={rating}
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                           />
                         </div>
                       </div>
@@ -201,7 +216,7 @@ const UpdateFood = () => {
                             name="origin"
                             value={selectedCountry}
                             onChange={(e) => setSelectedCountry(e.target.value)}
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                           >
                             <option value="">Select a country</option>
                             {countries.map((country, index) => (
@@ -216,14 +231,14 @@ const UpdateFood = () => {
                       <div className="sm:col-span-2">
                         <label className="text-base font-medium text-gray-900">
                           {" "}
-                          Short Description{" "}
+                         Food Description{" "}
                         </label>
                         <div className="mt-2.5 relative">
                           <textarea
                             type="text"
                             name="description"
                             defaultValue={description}
-                            className="block w-full px-4 py-4 text-black placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md resize-y bg-gray-50 focus:outline-none focus:border-red-600 focus:bg-white caret-red-600"
+                            className="block w-full px-4 py-4 text-black h-[70px] placeholder-gray-300 transition-all duration-200 border border-gray-200 rounded-md resize-y bg-gray-50 focus:outline-none focus:border-amber-500 focus:bg-white caret-amber-500"
                             rows="4"
                           ></textarea>
                         </div>
@@ -232,7 +247,7 @@ const UpdateFood = () => {
                       <div className="sm:col-span-2">
                         <button
                           type="submit"
-                          className="inline-flex items-center justify-center w-full px-4 py-4 mt-2 text-base font-semibold text-white transition-all duration-200 bg-red-600 border border-transparent rounded-md focus:outline-none hover:bg-red-700 focus:bg-red-700"
+                          className="inline-flex items-center justify-center w-full px-4 py-4 mt-2 text-base font-semibold text-white transition-all duration-200 bg-amber-500 border border-transparent rounded-md focus:outline-none hover:bg-amber-700 focus:bg-amber-700"
                         >
                           Update Food
                         </button>
@@ -286,11 +301,11 @@ const UpdateFood = () => {
                                                     rounded-full
                                                     w-7
                                                     h-7
-                                                    focus:bg-red-600
+                                                    focus:bg-amber-500
                                                     hover:text-white
                                                     focus:text-white
-                                                    hover:bg-red-600 hover:border-red-600
-                                                    focus:border-red-600
+                                                    hover:bg-amber-500 hover:border-amber-500
+                                                    focus:border-amber-500
                                                 "
                             >
                               <svg
@@ -320,11 +335,11 @@ const UpdateFood = () => {
                                                     rounded-full
                                                     w-7
                                                     h-7
-                                                    focus:bg-red-600
+                                                    focus:bg-amber-500
                                                     hover:text-white
                                                     focus:text-white
-                                                    hover:bg-red-600 hover:border-red-600
-                                                    focus:border-red-600
+                                                    hover:bg-amber-500 hover:border-amber-500
+                                                    focus:border-amber-500
                                                 "
                             >
                               <svg
@@ -354,11 +369,11 @@ const UpdateFood = () => {
                                                     rounded-full
                                                     w-7
                                                     h-7
-                                                    focus:bg-red-600
+                                                    focus:bg-amber-500
                                                     hover:text-white
                                                     focus:text-white
-                                                    hover:bg-red-600 hover:border-red-600
-                                                    focus:border-red-600
+                                                    hover:bg-amber-500 hover:border-amber-500
+                                                    focus:border-amber-500
                                                 "
                             >
                               <svg
@@ -394,11 +409,11 @@ const UpdateFood = () => {
                                                     rounded-full
                                                     w-7
                                                     h-7
-                                                    focus:bg-red-600
+                                                    focus:bg-amber-500
                                                     hover:text-white
                                                     focus:text-white
-                                                    hover:bg-red-600 hover:border-red-600
-                                                    focus:border-red-600
+                                                    hover:bg-amber-500 hover:border-amber-500
+                                                    focus:border-amber-500
                                                 "
                             >
                               <svg

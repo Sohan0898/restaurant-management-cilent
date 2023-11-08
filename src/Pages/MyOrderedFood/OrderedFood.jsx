@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -20,11 +21,11 @@ const OrderedFood = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-2 md:px-6 lg:px-16 my-14 pb-16">
-      <h2 className="text-4xl text-center font-bold mb-6">
-        <span className="text-FusionRed">
-          {user?.displayName ? user?.displayName : "Login User"} s
+      <h2 className="text-4xl text-center font-bold mt-36">
+        <span className="text-amber-500">
+          {user?.displayName ? user?.displayName : "Login User"}'s
         </span>{" "}
-        Cart items
+        Order items
       </h2>
       <div className="pt-10">
         {cartData === null ? (

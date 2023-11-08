@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import RowItems from "./RowItems";
+import { Helmet } from "react-helmet-async";
 
 const MyAddedFood = () => {
   const { user } = useContext(AuthContext);
@@ -15,28 +16,31 @@ const MyAddedFood = () => {
   }, [user?.email]);
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-5 mt-28">
-      <h1>{foodItems.length}</h1>
-      <div className="overflow-x-auto">
-        <table className="table bg-base-200 ">
-          {/* head */}
-          <thead className=" border-b-2">
-            <tr>
-              <th>Photo</th>
-              <th>Food Name</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody className="bg-gray-50 rounded-b-xl ">
-            {/* row 1 */}
-            {foodItems?.map((items) => (
+    
+    <div className="bg-gray-600 mt-40 ">
+      <Helmet>
+        <title>Foodie Feast | {user?.displayName} Added Food</title>
+      </Helmet>
+    <div className="container mx-auto p-6 ">
+        <div className="overflow-x-auto ">
+            <table className="w-full  bg-white shadow-md rounded my-6">
+                <thead>
+                    <tr className="border-b">
+                        <th className="text-left p-3 px-5 hidden sm:table-cell">Image</th>
+                        <th className="text-left p-3 px-5">Name</th>
+                        <th className="text-left p-3 px-5 hidden sm:table-cell">Category</th>
+                        <th className="text-left p-3 px-5">Price</th>
+                        <th className="text-left p-3 px-5">Update</th>
+                    </tr>
+                </thead>
+                
+                {foodItems?.map((items) => (
               <RowItems key={items._id} items={items}></RowItems>
             ))}
-          </tbody>
-        </table>
-      </div>
+
+            </table>
+        </div>
+    </div>
     </div>
   );
 };

@@ -1,30 +1,29 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const RowItems = ({ items }) => {
-  const { _id, foodName, price, category, image } = items;
+  const { foodName, price, category, image } = items;
 
   return (
     <div>
-      <tr>
-        <td>
-          <div className="flex items-center space-x-3">
-            <div className="avatar">
-              <div className="rounded-md w-24 h-24">
-                <img src={image} alt={foodName} />
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>{foodName}</td>
-
-        <td>{category}</td>
-        <td>{price} $</td>
-        <td>
-          <Link to={`/updateFood/${_id}`}>
-            <button className="btn btn-ghost btn-xs">Update</button>
-          </Link>
-        </td>
-      </tr>
+      <tbody>
+        <tr className="border-b hover:bg-orange-100">
+          <td className="p-3 px-5 hidden sm:table-cell">
+            <img
+              src={image}
+              alt="Sample Image"
+              className="w-16 h-16 object-cover"
+            />
+          </td>
+          <td className="p-3 px-5">{foodName}</td>
+          <td className="p-3 px-5 hidden sm:table-cell">{category}</td>
+          <td className="p-3 px-5">{price}</td>
+          <td className="p-3 px-5">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </div>
   );
 };

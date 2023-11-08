@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const FoodDetails = () => {
   const AddedFoodDetails = useLoaderData();
@@ -38,6 +39,9 @@ const FoodDetails = () => {
 
   return (
     <div className="mt-24">
+      <Helmet>
+        <title>Foodie Feast | Food Details</title>
+      </Helmet>
       <section className="py-10 bg-gray-50  lg:py-8">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="">

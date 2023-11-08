@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import Logo from "../../Components/Header/Navbar/Logo";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
   const [countries, setCountries] = useState([]);
@@ -89,7 +90,11 @@ const AddFood = () => {
   };
 
   return (
+    
     <div className=" pt-5 mt-16 md:mt-10 ">
+      <Helmet>
+        <title>Foodie Feast | Add Food</title>
+      </Helmet>
       <section className="py-10 bg-gradient-to-t from-gray-400 to-base-200 sm:py-16 lg:py-24">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="max-w-2xl mx-auto text-center">

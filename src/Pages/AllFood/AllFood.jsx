@@ -1,13 +1,23 @@
 import { useLoaderData } from "react-router-dom";
 import AllFoodCard from "./AllFoodCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AllFood = () => {
   const addedFood = useLoaderData();
-
+const{loading} =useContext(AuthContext);
   const [searchFood, setSearchFood] = useState("");
   const [filteredFood, setFilteredFood] = useState(addedFood);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center w-2/5 mx-auto h-[100vh]">
+        <img src="https://i.ibb.co/0sDxQzn/drawing-2802.gif" alt="" />
+      </div>
+    );
+  }
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -19,6 +29,9 @@ const AllFood = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Foodie Feast | All Food</title>
+      </Helmet>
       <section className=" bg-base-100">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-5 my-10">
           <form onSubmit={handleSearch} className=" mt-20 md:mt-28">

@@ -1,14 +1,16 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { googleSignIn, signInWithEmail } = useContext(AuthContext);
   const [logError, setLogError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -22,7 +24,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         console.error(error);
@@ -51,7 +53,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         console.error(error);
@@ -61,6 +63,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Foodie Feast | Login</title>
+      </Helmet>
       <section className="bg-base-100  pt-5 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="flex items-center justify-center px-8  bg-base-100 sm:px-6 lg:px-8 py-16 lg:py-24">

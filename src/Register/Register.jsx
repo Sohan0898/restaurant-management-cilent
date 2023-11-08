@@ -4,11 +4,15 @@ import Swal from "sweetalert2";
 
 import { AuthContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { signUpWithEmail } = useContext(AuthContext);
   const [regError, setRegError] = useState("");
+  const navigate = useNavigate();
+  
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -53,6 +57,7 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/");
       })
       .catch((error) => {
         console.error(error);
@@ -62,6 +67,9 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Foodie Feast | Register</title>
+      </Helmet>
       <section className=" bg-base-100 py-16 mt-8">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-5 my-10">
           <div className="grid grid-cols-1 md:items-stretch md:grid-cols-1 md: lg:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10">

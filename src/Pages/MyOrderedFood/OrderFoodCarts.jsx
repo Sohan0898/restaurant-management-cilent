@@ -1,7 +1,8 @@
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
-const OrderFoodCarts = ({ setLoading, loading, category, carts }) => {
-  const { _id, rating, image, foodName, price } = carts;
+const OrderFoodCarts = ({ setLoading, loading,  carts }) => {
+  const { _id, name,  formattedDate, image, foodName, price } = carts;
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -31,55 +32,31 @@ const OrderFoodCarts = ({ setLoading, loading, category, carts }) => {
 
   return (
     <div>
-      <div className="flex flex-col max-w-3xl p-6 mx-auto  space-y-4 sm:p-10 bg-base-100">
-        <ul className="flex flex-col divide-y divide-gray-700">
+      <Helmet>
+        <title>Foodie Feast | Ordered Food</title>
+      </Helmet>
+      <div className="flex flex-col max-w-screen-2xl  px-6 md:px-10 lg:px-16 p-6 mx-auto  space-y-4 sm:p-10 ">
+        
+        <ul className="flex flex-col bg-slate-200 px-7  ">
           <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
             <div className="md:flex md:w-full space-x-2 sm:space-x-4">
               <img
-                className="flex-shrink-0 w-full md:w-60 h-52 md:h-40 dark:border-transparent rounded outline-none  dark:bg-gray-500"
+                className="flex-shrink-0 w-full md:w-60 h-52 md:h-40  rounded outline-none "
                 src={image}
                 alt={foodName}
               />
               <div className="flex flex-col justify-between w-full pb-4">
                 <div className="flex justify-between w-full pb-2 space-x-2">
                   <div className="mt-4 md:mt-0 md:space-y-1">
-                    <h3 className="text-lg font-semibold leadi sm:pr-8">
-                      {foodName}
+                    <h3 className="text-xl font-semibold  sm:pr-8">
+                      Food Name : {foodName}
                     </h3>
-                    <p className="text-sm dark:text-gray-400">{category}</p>
-                    <p className="text-sm dark:text-gray-400 gap">
-                      {rating}{" "}
-                      <span className="rating ml-1 rating-sm">
-                        <input
-                          type="radio"
-                          name="rating-6"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                        <input
-                          type="radio"
-                          name="rating-6"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                        <input
-                          type="radio"
-                          name="rating-6"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                        <input
-                          type="radio"
-                          name="rating-6"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                        <input
-                          type="radio"
-                          name="rating-6"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                      </span>{" "}
-                    </p>
+                    <p className="text-sm dark:text-gray-500">Food Owner: {name}</p>
+                    <p className="text-sm dark:text-gray-500">Order Date: { formattedDate}</p>
+                    
                   </div>
                   <div className="mt-4 md:mt-0 text-left md:text-right">
-                    <p className="text-lg text-FusionRed font-semibold">
+                    <p className="text-xl text-amber-600 font-semibold">
                       {price} $
                     </p>
                   </div>
@@ -88,7 +65,7 @@ const OrderFoodCarts = ({ setLoading, loading, category, carts }) => {
                   <button
                     onClick={() => handleDelete(_id)}
                     type="button"
-                    className="flex items-center px-2 py-1 pl-0 hover:text-FusionRed space-x-1"
+                    className="flex items-center px-2 py-1 pl-0 hover:text-red-500 space-x-1"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -101,13 +78,14 @@ const OrderFoodCarts = ({ setLoading, loading, category, carts }) => {
                       <rect width="32" height="200" x="312" y="216"></rect>
                       <path d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z"></path>
                     </svg>
-                    <span>Remove</span>
+                    <span>Delete</span>
                   </button>
                 </div>
               </div>
             </div>
           </li>
         </ul>
+        <div className="divider "></div> 
       </div>
     </div>
   );
