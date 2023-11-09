@@ -13,9 +13,12 @@ const OrderedFood = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(` http://localhost:5000/orderedFood/${user.email}`, {
-      credentials: "include",
-    })
+    fetch(
+      ` https://restaurant-management-server-delta.vercel.app/orderedFood/${user.email}`,
+      {
+        credentials: "include",
+      }
+    )
       .then((res) => res.json())
       .then((data) => setCardData(data));
   }, [user.email, loading]);

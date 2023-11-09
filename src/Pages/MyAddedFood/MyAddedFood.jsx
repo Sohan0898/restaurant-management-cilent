@@ -11,7 +11,10 @@ const MyAddedFood = () => {
   console.log(foodItems?.result);
 
   useEffect(() => {
-    fetch(` http://localhost:5000/myAddedFood?email=${user?.email}` ,{credentials : 'include'})
+    fetch(
+      ` https://restaurant-management-server-delta.vercel.app/myAddedFood?email=${user?.email}`,
+      { credentials: "include" }
+    )
       .then((res) => res.json())
       .then((data) => setFoodItems(data));
   }, [user?.email]);

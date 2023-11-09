@@ -62,7 +62,10 @@ const AddFood = () => {
       // added food DB
 
       axios
-        .post("http://localhost:5000/myAddedFood", newFood)
+        .post(
+          "https://restaurant-management-server-delta.vercel.app/myAddedFood",
+          newFood
+        )
         .then((response) => {
           const data = response.data;
           console.log(data);

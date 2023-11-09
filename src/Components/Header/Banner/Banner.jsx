@@ -15,7 +15,8 @@ const Banner = () => {
           <div className="hero bg-cover bg-[url(https://i.ibb.co/HtvLqqz/1-20231105-214225-0000.png)]">
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
-              <div className="space-y-5">
+              <div data-aos="fade-up"
+     data-aos-duration="3000" className="space-y-5">
                 <div className="flex justify-start  items-center mt-20 md:mt-0 gap-4">
                   <progress
                     className="progress progress-warning w-9"

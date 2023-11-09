@@ -12,8 +12,6 @@ const Register = () => {
   const { signUpWithEmail } = useContext(AuthContext);
   const [regError, setRegError] = useState("");
   const navigate = useNavigate();
-  
-
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -23,8 +21,6 @@ const Register = () => {
     const photo = form.get("photo");
     const password = form.get("password");
     console.log(name, photo, email, password);
-
-    
 
     if (password.length < 6) {
       setRegError("Password must be six characters or longer!");
@@ -67,19 +63,18 @@ const Register = () => {
         setRegError(error.message);
       });
 
-      const user = {
-        name: name,
-        email: email,
-        photo: photo,
-        password: password,
-      };
-         axios
-        .post("http://localhost:5000/user", user)
-        .then((response) => {
-          const data = response.data;
-          console.log(data);
-          })
-
+    const user = {
+      name: name,
+      email: email,
+      photo: photo,
+      password: password,
+    };
+    axios
+      .post("https://restaurant-management-server-delta.vercel.app/user", user)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+      });
   };
 
   return (

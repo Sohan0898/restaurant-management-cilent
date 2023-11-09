@@ -11,9 +11,11 @@ const OurMenu = () => {
   const allData = FoodData?.result;
 
   useEffect(() => {
-    axios.get("http://localhost:5000/myAddedFood").then((response) => {
-      setAllData(response.data);
-    });
+    axios
+      .get("https://restaurant-management-server-delta.vercel.app/myAddedFood")
+      .then((response) => {
+        setAllData(response.data);
+      });
   }, []);
 
   const getRandomItems = (array, n) => {

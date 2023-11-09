@@ -62,9 +62,13 @@ const FoodPurchase = () => {
       };
 
       axios
-        .post("http://localhost:5000/orderedFood", newOrderedFood, {
-          withCredentials: true,
-        })
+        .post(
+          "https://restaurant-management-server-delta.vercel.app/orderedFood",
+          newOrderedFood,
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           const data = response.data;
           if (data.insertedId) {

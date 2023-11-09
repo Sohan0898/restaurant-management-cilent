@@ -13,7 +13,7 @@ const AllFood = () => {
   //load data
   useEffect(() => {
     fetch(
-      `http://localhost:5000/myAddedFood?page=${currentPage}&limit=${foodsPerPage}&search=${searchFood}`
+      `https://restaurant-management-server-delta.vercel.app/myAddedFood?page=${currentPage}&limit=${foodsPerPage}&search=${searchFood}`
     )
       .then((res) => res.json())
       .then((data) => setAddedFood(data));

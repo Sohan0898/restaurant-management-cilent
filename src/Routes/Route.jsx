@@ -24,12 +24,15 @@ const Route = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/myAddedFood"),
+        loader: () =>
+          fetch(
+            "https://restaurant-management-server-delta.vercel.app/myAddedFood"
+          ),
       },
       {
         path: "/allFood",
         element: <AllFood></AllFood>,
-        // loader: () => fetch("http://localhost:5000/myAddedFood"),
+        // loader: () => fetch("https://restaurant-management-server-delta.vercel.app/myAddedFood"),
       },
       {
         path: "/blog",
@@ -71,7 +74,9 @@ const Route = createBrowserRouter([
         path: "/foodDetails/:id",
         element: <FoodDetails></FoodDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/myAddedFood/${params.id}`),
+          fetch(
+            `https://restaurant-management-server-delta.vercel.app/myAddedFood/${params.id}`
+          ),
       },
       {
         path: "/purchaseFood/:id",
@@ -81,9 +86,12 @@ const Route = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/myAddedFood/${params.id}`, {
-            credentials: "include",
-          }),
+          fetch(
+            `https://restaurant-management-server-delta.vercel.app/myAddedFood/${params.id}`,
+            {
+              credentials: "include",
+            }
+          ),
       },
       {
         path: "/updateFood/:id",
@@ -93,7 +101,9 @@ const Route = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/myAddedFood/${params.id}`),
+          fetch(
+            `https://restaurant-management-server-delta.vercel.app/myAddedFood/${params.id}`
+          ),
       },
       {
         path: "/ourMenu",
