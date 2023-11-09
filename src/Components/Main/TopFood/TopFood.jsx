@@ -5,10 +5,19 @@ import Countdown from "./Countdown";
 import Logo from "../../Header/Navbar/Logo";
 
 const TopFood = () => {
-  const allFood = useLoaderData();
+  const allFoodData = useLoaderData([]);
 
-  const topFood = allFood.slice(0, 6);
-  console.log(topFood);
+  const allFood = allFoodData?.result;
+
+  // Show Data by top Rating
+  const sortByRating = (array) => {
+    return array.sort((a, b) => b.rating - a.rating);
+  };
+  const sortedData = sortByRating(allFood);
+  const top6Data = sortedData?.slice(0, 6);
+  console.log(sortedData);
+  console.log(top6Data);
+  
   return (
     <div>
       <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-5 my-10">
@@ -81,7 +90,7 @@ const TopFood = () => {
           </h1>
         </div>
         <div className="grid mt-16 lg:mt-20 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-10 md:gap-10 lg:gap-16">
-          {topFood?.map((top) => (
+          {top6Data?.map((top) => (
             <TopFoodCard key={top._id} top={top}></TopFoodCard>
           ))}
         </div>

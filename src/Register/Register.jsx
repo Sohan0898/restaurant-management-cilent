@@ -6,6 +6,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Register = () => {
   const { signUpWithEmail } = useContext(AuthContext);
@@ -22,6 +23,8 @@ const Register = () => {
     const photo = form.get("photo");
     const password = form.get("password");
     console.log(name, photo, email, password);
+
+    
 
     if (password.length < 6) {
       setRegError("Password must be six characters or longer!");
@@ -63,6 +66,20 @@ const Register = () => {
         console.error(error);
         setRegError(error.message);
       });
+
+      const user = {
+        name: name,
+        email: email,
+        photo: photo,
+        password: password,
+      };
+         axios
+        .post("http://localhost:5000/user", user)
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          })
+
   };
 
   return (

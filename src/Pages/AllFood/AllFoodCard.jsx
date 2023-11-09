@@ -59,9 +59,9 @@ const AllFoodCard = ({ allFood }) => {
       </div>
 
       <div>
-        <div className="bg-gray-300 text-center py-1">
+        <div className="border-x  text-center py-1">
           {" "}
-          <h2 className="text-sm font-bold">Quantity : {quantity}</h2>
+          <h2 className="text-md font-bold">Quantity : {quantity}</h2>
         </div>
         <div className="">
           <Link to={`/foodDetails/${_id}`}>

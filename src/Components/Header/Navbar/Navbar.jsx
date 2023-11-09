@@ -76,6 +76,20 @@ const Navbar = () => {
           Blog
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/ourMenu"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-red-500"
+              : `${isHomeRoute ? "text-amber-400" : ""}`
+          }
+        >
+          Menu
+        </NavLink>
+      </li>
     </>
   );
 
@@ -131,7 +145,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-5 z-[1] p-2 shadow bg-gray-300 rounded-box w-56"
+                  className="menu menu-sm dropdown-content mt-5 z-[1] p-2 shadow bg-gray-100 rounded-box w-56"
                 >
                   <div className=" md:hidden text-center mb-3">
                     <p className="text-lg font-semibold">
@@ -171,14 +185,25 @@ const Navbar = () => {
                   </button>
                 </>
               ) : (
-                <Link to={"/login"}>
-                  <button
-                    type="button"
-                    className="text-white bg-red-600 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
-                  >
-                    Sign In
-                  </button>
-                </Link>
+                <>
+                  <Link to={"/register"}>
+                    <button
+                      type="button"
+                      className=" bg-white hover:bg-amber-500  hover:text-white border border-amber-500 font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
+                    >
+                      Sign Up
+                    </button>
+                  </Link>
+
+                  <Link to={"/login"}>
+                    <button
+                      type="button"
+                      className="text-white lg:ml-2 bg-red-600 hover:bg-red-800  font-medium rounded-lg text-sm px-4 py-2  text-center mr-3 lg:mr-0 "
+                    >
+                      Sign In
+                    </button>
+                  </Link>
+                </>
               )}
             </div>
 
@@ -208,7 +233,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content mt-9 z-[1] menu p-4 space-y-1 shadow bg-gray-200 rounded-box w-52"
+                className="dropdown-content mt-9 z-[1] menu p-4 space-y-1 shadow bg-gray-100 rounded-box w-52"
               >
                 {navMenu}
                 <div>

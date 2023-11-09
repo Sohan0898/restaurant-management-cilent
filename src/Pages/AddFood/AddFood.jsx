@@ -90,7 +90,6 @@ const AddFood = () => {
   };
 
   return (
-    
     <div className=" pt-5 mt-16 md:mt-10 ">
       <Helmet>
         <title>Foodie Feast | Add Food</title>

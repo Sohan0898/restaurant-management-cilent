@@ -2,6 +2,7 @@
 import { GrUpdate } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
+
 const RowItems = ({ carts }) => {
   const {_id, foodName, price, rating,category, image } = carts;
 
@@ -20,19 +21,16 @@ const RowItems = ({ carts }) => {
               <div className="flex flex-col justify-between w-full pb-4">
                 <div className="flex justify-between w-full pb-2 space-x-2">
                   <div className="mt-4 md:mt-0 md:space-y-1">
-                    <h3 className="text-xl font-semibold text-white sm:pr-8">
-                      Food Name : {foodName}
+                    <h3 className="text-2xl font-semibold text-white sm:pr-8">
+                      {foodName}
                     </h3>
                     
                     <p className="text-sm dark:text-gray-300">Category: { category}</p>
-                    <p className="text-sm dark:text-gray-300">⭐⭐⭐⭐ { rating}</p>
+                    <p className="text-sm dark:text-gray-300"> { rating}(⭐⭐⭐⭐)</p>
+                    <p className="text-xl dark:text-red-300">Price : { price} $</p>
                     
                   </div>
-                  <div className="mt-4 md:mt-0 text-left md:text-right">
-                    <p className="text-xl text-red-800 font-semibold">
-                      {price} $
-                    </p>
-                  </div>
+                  
                 </div>
                 <div className="flex text-sm divide-x ">
                   <Link to={`/updateFood/${_id}`}><button

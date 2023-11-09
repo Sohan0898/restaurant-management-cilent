@@ -1,7 +1,7 @@
 const ExtraTwo = () => {
   return (
     <div>
-      <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
+      <section className="py-10 bg-gray-200 sm:py-16  lg:py-32">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="grid items-center md:grid-cols-2 md:gap-x-20 gap-y-10">
             <div className="relative pl-16 pr-10 sm:pl-6 md:pl-0 xl:pr-0 md:order-2">

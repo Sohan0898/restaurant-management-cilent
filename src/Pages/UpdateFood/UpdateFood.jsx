@@ -58,7 +58,9 @@ const UpdateFood = () => {
     // added food DB
 
     axios
-      .put(`http://localhost:5000/myAddedFood/${_id}`, updateFood, {withCredentials : true} )
+      .put(`http://localhost:5000/myAddedFood/${_id}`, updateFood, {
+        withCredentials: true,
+      })
       .then((response) => {
         const data = response.data;
         console.log(data);
@@ -83,16 +85,16 @@ const UpdateFood = () => {
         <title>Foodie Feast | Update Food</title>
       </Helmet>
       <section className="py-10 bg-gradient-to-t from-gray-400 to-base-200 sm:py-16 lg:py-24">
-      <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl  font-paytone leading-tight flex justify-center items-center gap-2 sm:text-4xl lg:text-5xl">
-              Update <Logo></Logo> Item
-            </h2>
-            <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed ">
-              At Foodie Feast, we believe that great food is not just a meal.
-              Its an experience that tantalizes your taste buds and leaves you
-              craving for more.
-            </p>
-          </div>
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl  font-paytone leading-tight flex justify-center items-center gap-2 sm:text-4xl lg:text-5xl">
+            Update <Logo></Logo> Item
+          </h2>
+          <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed ">
+            At Foodie Feast, we believe that great food is not just a meal. Its
+            an experience that tantalizes your taste buds and leaves you craving
+            for more.
+          </p>
+        </div>
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="mx-auto  mt-12 overflow-hidden bg-white rounded-md shadow-md lg:mt-14">
             <div className="grid items-stretch grid-cols-1 lg:grid-cols-5">
@@ -231,7 +233,7 @@ const UpdateFood = () => {
                       <div className="sm:col-span-2">
                         <label className="text-base font-medium text-gray-900">
                           {" "}
-                         Food Description{" "}
+                          Food Description{" "}
                         </label>
                         <div className="mt-2.5 relative">
                           <textarea

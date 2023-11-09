@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom";
 import AllFoodCard from "./AllFoodCard";
 import { useContext, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -6,46 +5,50 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
 
 const AllFood = () => {
-  const addedFood = useLoaderData();
-const{loading} =useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
+  const [addedFood, setAddedFood] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchFood, setSearchFood] = useState("");
-  const [filteredFood, setFilteredFood] = useState(addedFood);
-  const [countData, setCountData] = useState();
-  const [currentPage , setCurrentPage] = useState(0);
 
-   //pagination
+  //load data
   useEffect(() => {
-    fetch(` http://localhost:5000/myAddedFoodCount`)
+    fetch(
+      `http://localhost:5000/myAddedFood?page=${currentPage}&limit=${foodsPerPage}&search=${searchFood}`
+    )
       .then((res) => res.json())
-      .then((data) => setCountData(data));
-  }, []);
+      .then((data) => setAddedFood(data));
+  }, [currentPage, searchFood]);
 
-  console.log(countData?.count);
+  console.log(addedFood);
+  const allFood = addedFood?.result;
+
+  //pagination
+  const count = addedFood?.total;
+
+  console.log(count);
 
   const foodsPerPage = 9;
-  const noOfPages = Math.ceil(countData?.count/foodsPerPage);
+  const noOfPages = Math.ceil(count / foodsPerPage);
 
-  const pages = []
-  for(let i = 0; i < noOfPages; i++){
-    pages.push(i)
+  const pages = [];
+  for (let i = 0; i < noOfPages; i++) {
+    pages.push(i);
   }
 
   console.log(pages);
 
-
-  const handlePrev = () =>  {
-    if (currentPage > 0){
-      setCurrentPage (currentPage-1);
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-
-  }
-  const handleNext = () =>  {
-    if (currentPage < pages.length - 1){
-      setCurrentPage (currentPage + 1);
+  };
+  const handleNext = () => {
+    if (currentPage < noOfPages) {
+      setCurrentPage(currentPage + 1);
     }
+  };
 
-  }
-
+  //loading
 
   if (loading) {
     return (
@@ -55,15 +58,7 @@ const{loading} =useContext(AuthContext);
     );
   }
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const filter = addedFood.filter((allFood) =>
-      allFood.foodName.toLowerCase().includes(searchFood.toLowerCase())
-    );
-    setFilteredFood(filter);
-  };
-
-
+  console.log(currentPage);
 
   return (
     <div>
@@ -72,7 +67,14 @@ const{loading} =useContext(AuthContext);
       </Helmet>
       <section className=" bg-base-100">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16 py-5 my-10">
-          <form onSubmit={handleSearch} className=" mt-20 md:mt-28">
+          {/* search implemention here */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setCurrentPage(1);
+            }}
+            className=" mt-20 md:mt-28"
+          >
             <div className="flex justify-center items-center ">
               <div className="flex-1 w-3/4 min-w-0 px-4 ">
                 <label className=""></label>
@@ -103,32 +105,49 @@ const{loading} =useContext(AuthContext);
           <div>
             <h1 className="text-4xl md:text-5xl font-paytone text-center p-16">
               <span className="text-amber-500">Foodie Feast</span> All Items :{" "}
-              {filteredFood.length}
+              {allFood?.length}
             </h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-10">
-            {filteredFood?.map((allFood) => (
+            {allFood?.map((allFood) => (
               <AllFoodCard key={allFood._id} allFood={allFood}></AllFoodCard>
             ))}
           </div>
         </div>
       </section>
 
-              <div className="text-center space-x-2   py-10">
-                
-                <button onClick={handlePrev}
-                className="btn">prev</button>
-                {
-                  pages.map(page => <button 
+      <div className="text-center space-x-2   py-10">
+        {loading ? (
+          <p>loding...</p>
+        ) : (
+          <div>
+            <button onClick={handlePrev} className="btn">
+              prev
+            </button>
+            {pages?.fill(0)?.map((page, index) => {
+              const pageNum = index + 1;
 
-                    onClick={()=> setCurrentPage(page)}
-                    className={`btn px-6     ${currentPage === page ? 'active bg-red-500 text-white' : ''}`}
-                    key={page} >{page}</button>)
-                }
-                <button onClick={handleNext} className="btn">next</button>
-              </div>
-
+              return (
+                <button
+                  onClick={() => setCurrentPage(pageNum)}
+                  className={`btn px-6   ${
+                    currentPage === pageNum
+                      ? "active bg-red-500 text-white"
+                      : ""
+                  }`}
+                  key={pageNum}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
+            <button onClick={handleNext} className="btn">
+              next
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

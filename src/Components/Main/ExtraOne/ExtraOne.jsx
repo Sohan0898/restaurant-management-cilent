@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const ExtraOne = () => {
   return (
     <div>
-      <section className="py-10 bg-gray-100 sm:py-16 lg:py-24">
+      <section className="py-10 bg-gray-50 sm:py-16 lg:py-28">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 md:items-stretch md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10">
             <div className="flex flex-col justify-between lg:py-5">
@@ -82,7 +84,7 @@ const ExtraOne = () => {
             </div>
 
             <div className="">
-              <div className="overflow-hidden bg-white rounded-md">
+              <div className="overflow-hidden bg-gray-200 rounded-md">
                 <div className="p-10">
                   <h3 className="text-xs font-semibold tracking-widest text-red-500 uppercase">
                     Premium pack
@@ -186,15 +188,17 @@ const ExtraOne = () => {
                     </li>
                   </ul>
 
-                  <a
-                    href="#"
-                    title=""
-                    className="inline-flex items-center justify-center w-full px-8 py-4 mt-10 font-semibold text-white transition-all duration-200 rounded-full bg-gradient-to-r from-red-500 to-amber-500 hover:opacity-80 focus:opacity-80"
-                    role="button"
-                  >
-                    {" "}
-                    Get Premium Membership{" "}
-                  </a>
+                  <Link to={"/register"}>
+                    <span
+                      href="#"
+                      title=""
+                      className="inline-flex items-center justify-center w-full px-8 py-4 mt-10 font-semibold text-white transition-all duration-200 rounded-full bg-gradient-to-r from-red-500 to-amber-500 hover:opacity-80 focus:opacity-80"
+                      role="button"
+                    >
+                      {" "}
+                      Get Premium Membership{" "}
+                    </span>
+                  </Link>
 
                   <div className="flex items-center mt-5">
                     <svg

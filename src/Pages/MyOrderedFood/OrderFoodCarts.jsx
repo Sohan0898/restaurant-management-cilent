@@ -1,8 +1,8 @@
-
 import Swal from "sweetalert2";
 
-const OrderFoodCarts = ({ setLoading, loading,  carts }) => {
-  const { _id, name,  formattedDate, image, foodName, price } = carts;
+const OrderFoodCarts = ({ setLoading, loading, carts }) => {
+  const { _id, name, formattedDate, image, foodName, price, orderedQuantity } =
+    carts;
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -32,9 +32,7 @@ const OrderFoodCarts = ({ setLoading, loading,  carts }) => {
 
   return (
     <div>
-      
       <div className="flex flex-col max-w-screen-2xl  px-6 md:px-10 lg:px-16 p-6 mx-auto  space-y-4 sm:p-10 ">
-        
         <ul className="flex flex-col bg-slate-200 px-7  ">
           <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
             <div className="md:flex md:w-full space-x-2 sm:space-x-4">
@@ -49,9 +47,15 @@ const OrderFoodCarts = ({ setLoading, loading,  carts }) => {
                     <h3 className="text-xl font-semibold  sm:pr-8">
                       Food Name : {foodName}
                     </h3>
-                    <p className="text-sm dark:text-gray-500">Food Owner: {name}</p>
-                    <p className="text-sm dark:text-gray-500">Order Date: { formattedDate}</p>
-                    
+                    <p className="text-sm dark:text-gray-500">
+                      Food Owner: {name}
+                    </p>
+                    <p className="text-sm dark:text-gray-500">
+                      Order Date: {formattedDate}
+                    </p>
+                    <p className="text-sm dark:text-gray-500">
+                      Quantity: {orderedQuantity}
+                    </p>
                   </div>
                   <div className="mt-4 md:mt-0 text-left md:text-right">
                     <p className="text-xl text-amber-600 font-semibold">
@@ -83,7 +87,7 @@ const OrderFoodCarts = ({ setLoading, loading,  carts }) => {
             </div>
           </li>
         </ul>
-        <div className="divider "></div> 
+        <div className="divider "></div>
       </div>
     </div>
   );
