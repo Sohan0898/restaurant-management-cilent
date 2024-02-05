@@ -100,7 +100,7 @@ const Register = () => {
               <div className="hidden md:mt-auto md:block">
                 <img
                   className="rounded-md"
-                  src="https://i.ibb.co/hXh2bJL/Food-Feast.png"
+                  src="https://i.postimg.cc/PrzCmj0b/Food-Feast.png"
                   alt=""
                 />
                 <blockquote className="mt-20">

@@ -270,7 +270,7 @@ const UpdateFood = () => {
                       <div className="mt-8 space-y-7">
                         <img
                           className="w-full h-full "
-                          src="https://i.ibb.co/dm99scF/Add-Desire-food-3.png"
+                          src="https://i.postimg.cc/BvybqQ13/Add-Desire-food-3.png"
                           alt=""
                         />
 

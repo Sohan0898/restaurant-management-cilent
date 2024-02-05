@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center  w-2/5 mx-auto h-[100vh]">
-        <img src="https://i.ibb.co/0sDxQzn/drawing-2802.gif" alt="" />
+        <img src="https://i.postimg.cc/438tpg72/drawing-2802.gif" alt="" />
       </div>
     );
   }

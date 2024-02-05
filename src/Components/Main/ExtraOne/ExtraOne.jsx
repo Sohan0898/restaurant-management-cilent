@@ -72,7 +72,7 @@ const ExtraOne = () => {
                 <div className="flex items-center mt-8">
                   <img
                     className="flex-shrink-0 object-cover w-10 h-10 rounded-full"
-                    src="https://i.ibb.co/sgLSkmb/images.jpg"
+                    src="https://i.postimg.cc/y6yQtJZw/images.jpg"
                     alt=""
                   />
                   <div className="ml-4">

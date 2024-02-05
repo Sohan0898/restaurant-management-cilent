@@ -172,7 +172,7 @@ const Login = () => {
                   <div className="absolute inset-y-0 left-0 px-4 pt-2">
                     <img
                       className="w-10 "
-                      src="https://i.ibb.co/TT9y98j/icons8-google-48-1.png"
+                      src="https://i.postimg.cc/056M2Lr4/icons8-google-480.png"
                       alt=""
                     />
                   </div>
@@ -185,7 +185,7 @@ const Login = () => {
             <div>
               <img
                 className="w-full h-[60vh] mx-auto"
-                src="https://i.ibb.co/B46spFX/Untitled-40-x-40-in-40-x-30-in.png"
+                src="https://i.postimg.cc/9QSj8cgw/Untitled-40-x-40-in-40-x-30-in.png"
                 alt=""
               />
 

@@ -7,7 +7,7 @@ const ErrorPage = () => {
              <div>
       <div className="grid h-screen px-4 bg-white place-content-center">
         <div className="text-center">
-          <img src="https://i.ibb.co/RBJCSys/image-processing20210910-23126-qti6va.gif" alt="" />
+          <img src="https://i.postimg.cc/nzRs9YWy/image-processing20210910-23126-qti6va.gif" alt="" />
 
           <h2 className="mt-6 text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Uh-oh!

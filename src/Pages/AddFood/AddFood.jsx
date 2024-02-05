@@ -281,7 +281,7 @@ const AddFood = () => {
                       <div className="mt-8 space-y-7">
                         <img
                           className="w-full h-full "
-                          src="https://i.ibb.co/dGqYm70/Add-Desire-food-1.png"
+                          src="https://i.postimg.cc/8PnHgLPn/Add-Desire-food-1.png"
                           alt=""
                         />
 

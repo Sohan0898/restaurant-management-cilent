@@ -58,7 +58,7 @@ const OrderedFood = () => {
           <div className="min-h-[40vh] w-auto text-center">
             <img
               className="h-[400px] mx-auto"
-              src="https://i.ibb.co/Fx7ZLsB/Untitled-design-1.png"
+              src="https://i.postimg.cc/pd0KbFvL/Untitled-design-1.png"
               alt=""
             />
             <p className="text-2xl lg:text-4xl font-bold pb-14">

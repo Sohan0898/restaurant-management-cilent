@@ -215,7 +215,7 @@ const FoodPurchase = () => {
                         <div className="mt-8 space-y-7">
                           <img
                             className="w-full h-full "
-                            src="https://i.ibb.co/P1GnWQz/Add-Desire-food-5.png"
+                            src="https://i.postimg.cc/ZKY7STP0/Add-Desire-food-5.png"
                             alt=""
                           />
                         </div>

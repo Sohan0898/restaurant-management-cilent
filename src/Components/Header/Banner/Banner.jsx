@@ -12,11 +12,14 @@ const Banner = () => {
       <div className="carousel w-full h-[80vh] md:h-[100vh]">
         <div id="slide1" className="carousel-item relative w-full">
           {/* hero */}
-          <div className="hero bg-cover bg-[url(https://i.ibb.co/HtvLqqz/1-20231105-214225-0000.png)]">
+          <div className="hero bg-cover bg-[url(https://i.postimg.cc/KvdM5fYF/1-20231105-214225-0000.png)]">
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
-              <div data-aos="fade-up"
-     data-aos-duration="3000" className="space-y-5">
+              <div
+                data-aos="fade-up"
+                data-aos-duration="3000"
+                className="space-y-5"
+              >
                 <div className="flex justify-start  items-center mt-20 md:mt-0 gap-4">
                   <progress
                     className="progress progress-warning w-9"
@@ -37,10 +40,11 @@ const Banner = () => {
                   creativity.
                 </p>
                 <br />
-                <Link  to={'/ourMenu'}>
-                <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
-                  View Our Menu
-                </button></Link>
+                <Link to={"/ourMenu"}>
+                  <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
+                    View Our Menu
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -61,7 +65,7 @@ const Banner = () => {
         </div>
         <div id="slide2" className="carousel-item relative w-full">
           {/* hero */}
-          <div className="hero   bg-cover   bg-[url(https://i.ibb.co/d5qnKgf/3-20231105-214225-0002.png)]">
+          <div className="hero   bg-cover   bg-[url(https://i.postimg.cc/tgdWJ6pb/3-20231105-214225-0002.png)]">
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
               <div className="space-y-5">
@@ -84,9 +88,11 @@ const Banner = () => {
                   options. Fuel your body with natural goodness.
                 </p>
                 <br />
-                <Link to={'/ourMenu'}><button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
-                  See Breakfast Choices
-                </button></Link>
+                <Link to={"/ourMenu"}>
+                  <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
+                    See Breakfast Choices
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -107,7 +113,7 @@ const Banner = () => {
         </div>
         <div id="slide3" className="carousel-item relative w-full">
           {/* hero */}
-          <div className="hero  bg-cover   bg-[url(https://i.ibb.co/kKfC1Bq/2-20231105-214225-0001.png)]">
+          <div className="hero  bg-cover   bg-[url(https://i.postimg.cc/zfkH81FX/2-20231105-214225-0001.png)]">
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
               <div className="space-y-5">
@@ -131,9 +137,11 @@ const Banner = () => {
                   excellence.
                 </p>
                 <br />
-                <Link to={'/ourMenu'}><button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
-                  View Our Specials
-                </button></Link>
+                <Link to={"/ourMenu"}>
+                  <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
+                    View Our Specials
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -154,7 +162,7 @@ const Banner = () => {
         </div>
         <div id="slide4" className="carousel-item relative w-full">
           {/* hero */}
-          <div className="hero  bg-cover   bg-[url(https://i.ibb.co/23XsNSW/4-20231105-214225-0003.png)]">
+          <div className="hero  bg-cover   bg-[url(https://i.postimg.cc/V6LrNHK9/4-20231105-214225-0003.png)]">
             <div className="hero-overlay bg-opacity-10 bg-gradient-to-r from-[#000000] to-[#12121200]"></div>
             <div className="hero-content pl-6 md:pl-12 lg:pl-0 text-start text-neutral-content">
               <div className="space-y-5">
@@ -178,10 +186,11 @@ const Banner = () => {
                   like never before.
                 </p>
                 <br />
-                <Link to ={'/ourMenu'}>
-                <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
-                  Explore Our Flavors
-                </button></Link>
+                <Link to={"/ourMenu"}>
+                  <button className="btn bg-amber-500 border-none capitalize rounded-md font-montserrat">
+                    Explore Our Flavors
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

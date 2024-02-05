@@ -15,7 +15,7 @@ const ExtraTwo = () => {
                 <div className="overflow-hidden aspect-w-3 aspect-h-4">
                   <img
                     className="object-cover w-full h-full scale-150"
-                    src="https://i.ibb.co/ph8cBgt/young-man-dancing-spangles.jpg"
+                    src="https://i.postimg.cc/zf33ZRvp/young-man-dancing-spangles.jpg"
                     alt=""
                   />
                 </div>
